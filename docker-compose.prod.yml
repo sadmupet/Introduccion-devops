@@ -1,0 +1,34 @@
+services:
+
+  back-ventas:
+    image: ${ECR_REGISTRY}/citt/back-ventas:latest
+    container_name: citt-back-ventas
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      DB_ENDPOINT: ${DB_ENDPOINT}
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+  back-despachos:
+    image: ${ECR_REGISTRY}/citt/back-despachos:latest
+    container_name: citt-back-despachos
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      DB_ENDPOINT: ${DB_ENDPOINT}
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+  front-despacho:
+    image: ${ECR_REGISTRY}/citt/front-despacho:latest
+    container_name: citt-front
+    restart: unless-stopped
+    ports:
+      - "80:80"
